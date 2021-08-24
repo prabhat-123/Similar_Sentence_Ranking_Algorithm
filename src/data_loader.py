@@ -19,8 +19,9 @@ class DataLoader():
         self.row_numbers = row_numbers
         file_path = os.path.join(data_path, self.file_name)
         quora_data = pd.read_csv(file_path)
-        sentences = quora_data[:row_numbers]
-        return sentences
+        filtered_data = quora_data[:row_numbers]
+        return filtered_data
 
     
+
 

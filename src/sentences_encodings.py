@@ -1,10 +1,7 @@
 import os
 
 import pickle
-import numpy as np
-import pandas as pd
 from tqdm import tqdm
-from data_loader import DataLoader
 from sentence_transformers import SentenceTransformer
 
 root_dir = os.getcwd()
@@ -22,15 +19,15 @@ class SentenceEncoder():
         return sbert_model
 
     
-    def encode_sentences(self, sbert_model, sentences):
+    def encode_sentences(self, sbert_model, filtered_data):
 
         self.sbert_model = sbert_model
-        self.sentences = sentences
+        self.sentences = filtered_data
         sentence_embeddings = {}
-        for index in tqdm(range(len(sentences))):
+        for index in tqdm(range(len(filtered_data))):
 
             id = index + 1
-            sentence = sentences['Questions'][index]
+            sentence = filtered_data['Questions'][index]
             sentence_embedding = sbert_model.encode(sentence)
             sentence_embeddings[id] = sentence_embedding
 
